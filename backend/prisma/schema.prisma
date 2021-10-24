@@ -1,0 +1,34 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+//Entidades
+
+model User {
+  id         String @id @default(uuid()) //Chave primária
+  github_id  Int
+  login      String
+  name       String
+  avatar_url String
+
+  //Many-to-One: Múltiplas mensagens estão atreladas a um único usuário.
+  Message Message[]
+  @@map("Users")
+}
+
+model Message {
+  id         String   @id @default(uuid()) //Chave primária
+  text       String
+  created_at DateTime @default(now())
+
+  //One-to-Many: Um único usuário está atrelado a muitas mensagens.
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("Messages")
+}
