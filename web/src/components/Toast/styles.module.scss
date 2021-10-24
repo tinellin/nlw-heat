@@ -1,0 +1,18 @@
+.toastWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 300px;
+  height: 58px;
+
+  position: absolute;
+  top: 40px;
+  right: -300px;
+
+  .toastContent {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
